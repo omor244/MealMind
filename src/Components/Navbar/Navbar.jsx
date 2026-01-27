@@ -43,7 +43,7 @@ const Navbar = () => {
 
     return (
         <div className="navbar bg-white  shadow-md px-4 md:px-48 ">
-            {/* --- Navbar Start: Logo & Mobile Menu --- */}
+           
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -63,16 +63,16 @@ const Navbar = () => {
                 </Link>
             </div>
 
-            {/* --- Navbar Center: Desktop Menu --- */}
+         
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 gap-8 font-medium text-slate-600">
                     {navLinks}
                 </ul>
             </div>
 
-            {/* --- Navbar End: Buttons/Profile --- */}
+           
             <div className="navbar-end gap-2">
-                {/* যদি ইউজার লগইন না থাকে তবে এই বাটনগুলো দেখাবে */}
+             
                 <Link to="/login" className="btn btn-ghost text-slate-600 hidden sm:flex">Login</Link>
                 <Link to="/register" className="btn btn-primary text-white rounded-xl px-6 shadow-lg shadow-primary/20">
                     Get Started

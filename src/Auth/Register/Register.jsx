@@ -1,21 +1,26 @@
 import React from 'react';
 import { FaUser, FaEnvelope, FaLock, FaArrowRight } from "react-icons/fa";
-import { Link, useNavigate } from 'react-router'; // Next.js এর বদলে React Router
-import axios from 'axios';
+import { Link, useNavigate } from 'react-router'; 
 import Swal from 'sweetalert2';
-// import Socialbutton from '../Socialbutton/Socialbutton';
+import useAuth from '../../Hooks/useAuth';
+import { AuthContext } from '../../Provider/Context/AuthContex';
+
+
 
 const Register = () => {
-    const navigate = useNavigate(); // Next.js এর useRouter এর বদলে
+    const navigate = useNavigate(); 
 
+    const { createUser, updateUserProfile } = useAuth()
+    
     const handleRegister = async (e) => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
+        const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
 
-        // পাসওয়ার্ড ভ্যালিডেশন
+ 
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
         if (!passwordRegex.test(password)) {
             Swal.fire({
@@ -25,6 +30,10 @@ const Register = () => {
             });
             return;
         }
+    
+      
+        
+        
 
         const newUser = {
             name,
@@ -33,18 +42,24 @@ const Register = () => {
             createdAt: new Date().toISOString(), // Standard ISO string
             role: "user",
         };
+       
+        
+
 
         try {
-            // আপনার ব্যাকএন্ড URL চেক করে নিন
-            const res = await axios.post('https://stack-food-server.vercel.app/register', newUser);
+        
+            const res = await createUser(email, password)
 
-            if (res.data.insertedId) {
+            console.log(res)
+
+            if (res.user) {
+                const res = updateUserProfile(name, photo)
                 Swal.fire({
                     title: "Registration Successful!",
                     text: "Please login to continue.",
                     icon: "success",
                 });
-                navigate('/login'); // React Router navigate
+                navigate('/'); 
             }
         } catch (error) {
             Swal.fire({
@@ -89,7 +104,7 @@ const Register = () => {
                     </div>
                 </div>
 
-                {/* --- লেফট সাইড: রেজিস্ট্রেশন ফর্ম --- */}
+              
                 <div className="flex-1 p-8 lg:p-16">
                     <div className="max-w-sm mx-auto">
                         <div className="mb-10 text-center md:text-left">
@@ -98,7 +113,7 @@ const Register = () => {
                         </div>
 
                         <form onSubmit={handleRegister} className="space-y-4">
-                            {/* নাম ইনপুট */}
+                          
                             <div className="form-control">
                                 <label className="label py-1"><span className="label-text font-bold text-slate-600">Full Name</span></label>
                                 <div className="relative">
@@ -106,8 +121,15 @@ const Register = () => {
                                     <input name="name" type="text" placeholder="John Doe" className="input input-bordered w-full pl-12 bg-slate-50 focus:bg-white focus:border-primary transition-all rounded-2xl border-slate-200" required />
                                 </div>
                             </div>
+                            <div className="form-control">
+                                <label className="label py-1"><span className="label-text font-bold text-slate-600">Photo Url</span></label>
+                                <div className="relative">
+                                    <span className="absolute inset-y-0 left-4 flex items-center text-slate-400"><FaUser size={14} /></span>
+                                    <input name="photo" type="text" placeholder="https://placehold.jp/600x400.png" className="input input-bordered w-full pl-12 bg-slate-50 focus:bg-white focus:border-primary transition-all rounded-2xl border-slate-200" required />
+                                </div>
+                            </div>
 
-                            {/* ইমেইল ইনপুট */}
+                          
                             <div className="form-control">
                                 <label className="label py-1"><span className="label-text font-bold text-slate-600">Email Address</span></label>
                                 <div className="relative">
@@ -116,7 +138,6 @@ const Register = () => {
                                 </div>
                             </div>
 
-                            {/* পাসওয়ার্ড ইনপুট */}
                             <div className="form-control">
                                 <label className="label py-1"><span className="label-text font-bold text-slate-600">Password</span></label>
                                 <div className="relative">
