@@ -1,17 +1,19 @@
 import React from 'react';
 import { FaUser, FaEnvelope, FaLock, FaArrowRight } from "react-icons/fa";
-import { Link, useNavigate } from 'react-router'; 
+import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import useAuth from '../../Hooks/useAuth';
-import { AuthContext } from '../../Provider/Context/AuthContex';
+
+import { saveorupdateuser } from '../../Uitlity/Utility';
+import SocialButton from '../../Hooks/Socialbutton';
 
 
 
 const Register = () => {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const { createUser, updateUserProfile } = useAuth()
-    
+
     const handleRegister = async (e) => {
         e.preventDefault();
         const form = e.target;
@@ -20,7 +22,7 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
 
- 
+
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
         if (!passwordRegex.test(password)) {
             Swal.fire({
@@ -30,36 +32,38 @@ const Register = () => {
             });
             return;
         }
-    
-      
-        
-        
+
+
+
+
 
         const newUser = {
             name,
             email,
             password,
-            createdAt: new Date().toISOString(), // Standard ISO string
-            role: "user",
+           
         };
-       
-        
+
+
 
 
         try {
+
+
+            const res = await saveorupdateuser(newUser)
+
         
-            const res = await createUser(email, password)
+            if (res.insertedId) {
+                await createUser(email, password)
+                await updateUserProfile(name, photo)
 
-            console.log(res)
-
-            if (res.user) {
-                const res = updateUserProfile(name, photo)
                 Swal.fire({
                     title: "Registration Successful!",
                     text: "Please login to continue.",
                     icon: "success",
                 });
-                navigate('/'); 
+                navigate('/');
+
             }
         } catch (error) {
             Swal.fire({
@@ -74,7 +78,7 @@ const Register = () => {
         <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center p-4">
             <div className="max-w-5xl w-full bg-white rounded-[2rem] md:rounded-[3rem] shadow-2xl shadow-slate-200 overflow-hidden flex flex-col md:flex-row-reverse">
 
-                {/* --- রাইট সাইড: ভিজ্যুয়াল সেকশন --- */}
+
                 <div className="md:w-1/2 bg-slate-900 relative p-8 md:p-12 flex flex-col justify-between text-white overflow-hidden">
                     <div className="absolute top-[-10%] right-[-10%] w-64 h-64 bg-orange-500/20 rounded-full blur-3xl"></div>
                     <div className="absolute bottom-[-10%] left-[-10%] w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
@@ -104,7 +108,7 @@ const Register = () => {
                     </div>
                 </div>
 
-              
+
                 <div className="flex-1 p-8 lg:p-16">
                     <div className="max-w-sm mx-auto">
                         <div className="mb-10 text-center md:text-left">
@@ -113,7 +117,7 @@ const Register = () => {
                         </div>
 
                         <form onSubmit={handleRegister} className="space-y-4">
-                          
+
                             <div className="form-control">
                                 <label className="label py-1"><span className="label-text font-bold text-slate-600">Full Name</span></label>
                                 <div className="relative">
@@ -129,7 +133,7 @@ const Register = () => {
                                 </div>
                             </div>
 
-                          
+
                             <div className="form-control">
                                 <label className="label py-1"><span className="label-text font-bold text-slate-600">Email Address</span></label>
                                 <div className="relative">
@@ -159,8 +163,7 @@ const Register = () => {
 
                         <div className="w-full mt-8">
                             <div className="divider text-slate-500 text-xs uppercase tracking-widest mb-8">Or register with</div>
-                            {/* <Socialbutton /> */}
-                            google
+                           <SocialButton></SocialButton>
                         </div>
 
                         <p className="text-center mt-10 text-slate-500 text-sm font-medium">

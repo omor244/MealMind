@@ -1,29 +1,30 @@
-import React from 'react';
+
 import { FaEnvelope, FaLock, FaArrowRight } from "react-icons/fa";
-import { Link, useNavigate } from 'react-router'; // React Router ব্যবহার করা হয়েছে
+import { Link,  useNavigate } from 'react-router'; 
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import useAuth from "../../Hooks/useAuth";
+import SocialButton from "../../Hooks/Socialbutton";
 // import Socialbutton from '../Socialbutton/Socialbutton';
 
 const Login = () => {
     const navigate = useNavigate();
-
+    const { signIn } = useAuth()
     const handleLogin = async (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
 
-        const loginData = { email, password };
+        
+
 
         try {
-            // আপনার ব্যাকএন্ড লগইন এপিআই কল (উদাহরণস্বরূপ)
-            const res = await axios.post('https://stack-food-server.vercel.app/login', loginData);
+        
+           const  res = await  signIn(email, password)
 
-            if (res.data.success || res.data.token) {
-                // টোকেন লোকাল স্টোরেজে সেভ করা (যদি JWT ব্যবহার করেন)
-                localStorage.setItem('access-token', res.data.token);
-
+            if (res.user) {
+          
                 Swal.fire({
                     title: "Successfully Login",
                     icon: "success",
@@ -31,7 +32,6 @@ const Login = () => {
                     showConfirmButton: false
                 });
 
-                // ড্যাশবোর্ড বা হোমে রিডাইরেক্ট
                 navigate('/');
             } else {
                 Swal.fire("Error", "Invalid Email or Password!", "error");
@@ -46,7 +46,7 @@ const Login = () => {
         <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center p-4">
             <div className="max-w-5xl w-full bg-white rounded-[2rem] md:rounded-[3rem] shadow-2xl shadow-slate-200 overflow-hidden flex flex-col md:flex-row">
 
-                {/* --- লেফট সাইড: ভিজ্যুয়াল সেকশন --- */}
+             
                 <div className="md:w-1/2 bg-slate-900 relative p-8 md:p-12 flex flex-col justify-between text-white overflow-hidden">
                     {/* Background Patterns */}
                     <div className="absolute top-[-10%] left-[-10%] w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
@@ -63,6 +63,7 @@ const Login = () => {
                         <p className="text-slate-400 mt-4 max-w-xs text-sm md:text-base">
                             Login to access your personalized menu, plan meals, and track your culinary adventures.
                         </p>
+                        <Link to={"/"} className='btn btn-primary px-8 mt-3'>Go Home</Link>
                     </div>
 
                     <div className="relative z-10 pt-8 border-t border-slate-800 mt-8 md:mt-0">
@@ -70,7 +71,7 @@ const Login = () => {
                     </div>
                 </div>
 
-                {/* --- রাইট সাইড: লগইন ফর্ম --- */}
+              
                 <div className="flex-1 p-8 lg:p-16">
                     <div className="max-w-sm mx-auto">
                         <div className="mb-10 text-center md:text-left">
@@ -123,7 +124,7 @@ const Login = () => {
 
                         <div className="w-full mt-8">
                             <div className="divider text-slate-500 text-xs uppercase tracking-widest mb-8">Or login with</div>
-                            {/* <Socialbutton /> */}
+                         <SocialButton></SocialButton>
                         </div>
 
                         <p className="text-center mt-10 text-slate-500 text-sm font-medium">

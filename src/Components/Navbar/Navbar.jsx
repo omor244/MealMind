@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router';
 import { FaUtensils, FaUserCircle } from 'react-icons/fa';
+import useAuth from '../../Hooks/useAuth';
 
 const Navbar = () => {
-   
+    const { user, logOut, loading } = useAuth()
+    
     const navLinks = (
         <>
             <li>
@@ -40,7 +42,8 @@ const Navbar = () => {
             </li>
         </>
     );
-
+ 
+   
     return (
         <div className="navbar bg-white  shadow-md px-4 md:px-48 ">
            
@@ -73,25 +76,32 @@ const Navbar = () => {
            
             <div className="navbar-end gap-2">
              
-                <Link to="/login" className="btn btn-ghost text-slate-600 hidden sm:flex">Login</Link>
-                <Link to="/register" className="btn btn-primary text-white rounded-xl px-6 shadow-lg shadow-primary/20">
-                    Get Started
-                </Link>
-
-                {/* লগইন থাকলে প্রোফাইল আইকন (অপশনাল) */}
-                {/* <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar border-2 border-primary">
-                        <div className="w-10 rounded-full">
-                            <img src="https://i.pravatar.cc/100" alt="profile" />
-                        </div>
-                    </label>
-                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                        <li><Link to="/profile">Profile</Link></li>
-                        <li><Link to="/dashboard">Dashboard</Link></li>
-                        <li><button className="text-red-500">Logout</button></li>
-                    </ul>
-                </div> 
-                */}
+            
+                { 
+                    loading ? <> <span className='text-2xl'><FaUserCircle></FaUserCircle></span> </> : <>
+                        {user ? <>
+                            <div className="dropdown dropdown-end">
+                                <label tabIndex={0} className="btn btn-ghost btn-circle avatar border-2 border-primary">
+                                    <div className="w-10 rounded-full">
+                                        <img src={user?.photURL} alt="profile" />
+                                    </div>
+                                </label>
+                                <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                                    <li><Link to="/profile">Profile</Link></li>
+                                    <li><Link to="/dashboard">Dashboard</Link></li>
+                                    <li><button onClick={() => logOut()} className="text-red-500">Logout</button></li>
+                                </ul>
+                            </div>
+                        </>
+                            : <>
+                                <Link to="/login" className="btn btn-ghost text-slate-600 hidden sm:flex">Login</Link>
+                                <Link to="/register" className="btn btn-primary text-white rounded-xl px-6 shadow-lg shadow-primary/20">
+                                    Get Started
+                                </Link>
+                            </>} 
+                    </>
+         }       
+               
             </div>
         </div>
     );
