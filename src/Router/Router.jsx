@@ -8,6 +8,7 @@ import RecipesDetals from "../Components/Detailspage/RecipesDetals";
 import MealPlanner from "../Pages/MealPlanner";
 import About from "../Pages/About";
 import Profile from "../Pages/Profile";
+import Dashboard from "../Layout/Dashboard";
 
 
 export const router = createBrowserRouter([
@@ -41,6 +42,14 @@ export const router = createBrowserRouter([
             },
         ]
     },
+    {
+        path: "dashboard", 
+        element: <Dashboard></Dashboard>
+    },
+
+
+
+
     {
         path: "/register",
         element: <Register></Register>
