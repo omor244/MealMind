@@ -4,6 +4,8 @@ import Register from "../Auth/Register/Register";
 import Login from "../Auth/Login/Login";
 import Home from "../Pages/Home";
 import Recipes from "../Pages/Recipes";
+import RecipesDetals from "../Components/Detailspage/RecipesDetals";
+import MealPlanner from "../Pages/MealPlanner";
 
 
 export const router = createBrowserRouter([
@@ -18,7 +20,15 @@ export const router = createBrowserRouter([
             {
                 path: "recipes",
                 element: <Recipes></Recipes>
-            }
+            },
+            {
+                path: "recipes/:id",
+                element: <RecipesDetals></RecipesDetals>
+            },
+            {
+                path: "meal-planner",
+                element: <MealPlanner></MealPlanner>
+            },
         ]
     },
     {
