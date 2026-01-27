@@ -5,8 +5,8 @@ import useAuth from './useAuth'
 
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3000',
-    withCredentials: true,
+    baseURL: 'http://localhost:3000'
+   
 })
 
 const useAxiosSecure = () => {

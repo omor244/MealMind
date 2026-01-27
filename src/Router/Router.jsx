@@ -6,6 +6,8 @@ import Home from "../Pages/Home";
 import Recipes from "../Pages/Recipes";
 import RecipesDetals from "../Components/Detailspage/RecipesDetals";
 import MealPlanner from "../Pages/MealPlanner";
+import About from "../Pages/About";
+import Profile from "../Pages/Profile";
 
 
 export const router = createBrowserRouter([
@@ -28,6 +30,14 @@ export const router = createBrowserRouter([
             {
                 path: "meal-planner",
                 element: <MealPlanner></MealPlanner>
+            },
+            {
+                path: "about",
+                element: <About></About>
+            },
+            {
+                path: "profile",
+                element: <Profile></Profile>
             },
         ]
     },

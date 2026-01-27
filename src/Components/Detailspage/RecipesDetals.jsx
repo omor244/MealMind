@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate, Link } from "react-router";
 import { Clock, Flame, ArrowLeft, Star, Utensils, CheckCircle2 } from "lucide-react";
 import Loading from "../Loading/Loading";
 
@@ -132,10 +132,10 @@ const RecipesDetails = () => {
 
                   
                     <div className="mt-16 flex justify-center">
-                        <button className="bg-primary hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-black text-lg shadow-xl shadow-primary/30 transition-all flex items-center gap-3 active:scale-95">
+                        <Link to={'/meal-planner'} className="bg-primary hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-black text-lg shadow-xl shadow-primary/30 transition-all flex items-center gap-3 active:scale-95">
                             <CheckCircle2 size={24} />
                             Add to My Weekly Plan
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>
