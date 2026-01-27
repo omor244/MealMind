@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router'; // Next Link এর বদলে React Router Link
 import { FaStar, FaClock, FaFire, FaChevronRight } from "react-icons/fa";
 
-// Fake Data for testing (Matching your Requirement Section 8)
+
 const fakeFoods = [
     {
         _id: "1",
@@ -51,7 +51,7 @@ const FeaturedFoods = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // ফেইক ডাটা লোড করা হচ্ছে (পরবর্তীতে axios দিয়ে রিপ্লেস করবেন)
+     
         const timer = setTimeout(() => {
             setFoods(fakeFoods);
             setLoading(false);

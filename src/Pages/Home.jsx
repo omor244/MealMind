@@ -1,11 +1,11 @@
 import React from 'react';
-import HeroSection from '../HeroSection';
-import Categories from '../categories';
-import FeaturedFoods from '../../FeaturedFoods';
-import HowItWorks from '../HowItWorks';
-import JoinCommunity from '../JoinCommunity';
-import AppPromo from '../AppPromo';
-import useAuth from '../../../Hooks/useAuth';
+import HeroSection from '../Components/Homepage/HeroSection';
+import Categories from '../Components/Homepage/categories';
+import FeaturedFoods from '../Components/FeaturedFoods';
+import HowItWorks from '../Components/Homepage/HowItWorks';
+import JoinCommunity from '../Components/Homepage/JoinCommunity';
+import AppPromo from '../Components/Homepage/AppPromo';
+import useAuth from '../Hooks/useAuth';
 
 const Home = () => {
     const { user } = useAuth()
