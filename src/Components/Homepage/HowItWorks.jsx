@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 
 
 const steps = [
@@ -81,9 +82,9 @@ const HowItWorks = () => {
 
                 {/* Bottom CTA (Extra touch for UX) */}
                 <div className="mt-20 text-center">
-                    <button className="btn btn-primary btn-lg rounded-2xl text-white px-12 shadow-xl shadow-primary/20 hover:scale-105 transition-all normal-case font-bold">
+                    <Link to={"/meal-planner"} className="btn btn-primary btn-lg rounded-2xl text-white px-12 shadow-xl shadow-primary/20 hover:scale-105 transition-all normal-case font-bold">
                         Create Your First Plan
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>

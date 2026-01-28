@@ -12,10 +12,11 @@ import {
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router";
 import useRole from "../../Hooks/useRole";
+import useAuth from "../../Hooks/useAuth";
 
-const DashboardNavber = ({  logout }) => {
+const DashboardNavber = () => {
     const location = useLocation();
-
+    const { logOut } = useAuth()
     const {role} = useRole()
 
     console.log(role)
@@ -24,7 +25,7 @@ const DashboardNavber = ({  logout }) => {
     
 
     return (
-        <aside className="hidden lg:flex   bg-slate-900 flex-col p-6 text-white sticky top-0 h-screen">
+        <aside className="hidden lg:flex   bg-slate-900 flex-col p-6 text-white sticky top-0 h-full">
             
             <NavLink to={'/'} className="flex items-center gap-3 mb-10 px-2">
                 <div className="bg-primary p-2 rounded-xl">
@@ -40,16 +41,16 @@ const DashboardNavber = ({  logout }) => {
 
               
                 <NavLink to="/dashboard" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all `}>
-                    <LayoutDashboard size={20} /> Dashboard
+                    <LayoutDashboard size={20} /> Overview
                 </NavLink>
 
                
                 {role === "user" && (
                     <>
-                        <NavLink to="/dashboard/planner" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all ${isActive('/dashboard/planner')}`}>
+                        <NavLink to="/dashboard/planner" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all `}>
                             <Calendar size={20} /> Weekly Planner
                         </NavLink>
-                        <NavLink to="/dashboard/progress" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all ${isActive('/dashboard/progress')}`}>
+                        <NavLink to="/dashboard/progress" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all `}>
                             <TrendingUp size={20} /> Health Progress
                         </NavLink>
                     </>
@@ -96,7 +97,7 @@ const DashboardNavber = ({  logout }) => {
                 </div>
             {/* Logout Button */}
             <button
-                onClick={logout}
+                onClick={() => logOut()}
                 className="flex items-center gap-4 w-full p-4 text-red-400 font-bold hover:bg-red-500/10 rounded-2xl transition-all mt-auto"
             >
                 <LogOut size={20} /> Logout

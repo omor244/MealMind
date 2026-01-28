@@ -17,15 +17,23 @@ const FeaturedManagement = () => {
 
    
     const handleAddToFeatured = async (id, currentStatus) => {
-        try {
-            const res = await axiosSecure.post(`/recipes/featured/${id}`, {
-                isFeatured: !currentStatus
-            });
 
-            if (res.data.modifiedCount > 0) {
+    
+         console.log(currentStatus)
+       
+           
+        
+        try {
+            const res = await axiosSecure.patch(`/recipes/featured/${id}`, {
+                isFeatured: !currentStatus
+            })
+
+           
+
+            if (res.data.modifiedCount) {
                 Swal.fire({
-                    title: currentStatus ? "Removed!" : "Added to Featured!",
-                    text: currentStatus ? "Recipe removed from home spotlight" : "This recipe will now show on Home page",
+                    title: currentStatus ? "Added to Featured!" : "Removed!",
+                    text: currentStatus ?  "This recipe will now show on Home page" : "Recipe removed from home spotlight",
                     icon: "success",
                     timer: 1500,
                     showConfirmButton: false
@@ -90,22 +98,23 @@ const FeaturedManagement = () => {
                                     </td>
                                     <td className="p-5 text-center">
                                         {recipe.isFeatured ? (
-                                            <button
+                                              <button
                                                 onClick={() => handleAddToFeatured(recipe._id, true)}
-                                                className="flex items-center gap-2 mx-auto px-5 py-2 bg-emerald-50 text-emerald-600 rounded-xl font-black text-xs border border-emerald-100 hover:bg-red-50 hover:text-red-600 hover:border-red-100 transition-all group"
-                                            >
-                                                <CheckCircle size={16} className="group-hover:hidden" />
-                                                <span className="group-hover:hidden tracking-tighter uppercase">Featured Now</span>
-                                                <span className="hidden group-hover:block tracking-tighter uppercase">Remove Now</span>
-                                            </button>
-                                        ) : (
-                                            <button
-                                                onClick={() => handleAddToFeatured(recipe._id, false)}
                                                 className="flex items-center gap-2 mx-auto px-5 py-2 bg-slate-900 text-white rounded-xl font-black text-xs hover:bg-primary hover:shadow-lg transition-all active:scale-95"
                                             >
                                                 <PlusCircle size={16} />
                                                 <span className="tracking-tighter uppercase">Add to Featured</span>
                                             </button>
+                                          
+                                        ) : (
+                                                <button
+                                                    onClick={() => handleAddToFeatured(recipe._id, false)}
+                                                    className="flex items-center gap-2 mx-auto px-5 py-2 bg-emerald-50 text-emerald-600 rounded-xl font-black text-xs border border-emerald-100 hover:bg-red-50 hover:text-red-600 hover:border-red-100 transition-all group"
+                                                >
+                                                    <CheckCircle size={16} className="group-hover:hidden" />
+                                                    <span className="group-hover:hidden tracking-tighter uppercase">Featured Now</span>
+                                                    <span className="hidden group-hover:block tracking-tighter uppercase">Remove Now</span>
+                                                </button>
                                         )}
                                     </td>
                                 </tr>
