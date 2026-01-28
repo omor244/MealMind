@@ -11,26 +11,29 @@ import {
     Settings
 } from "lucide-react";
 import { Link, useLocation } from "react-router";
+import useRole from "../../Hooks/useRole";
 
 const DashboardNavber = ({  logout }) => {
     const location = useLocation();
 
-    const role = "admin"
+    const {role} = useRole()
 
-    // বর্তমান পেজ অনুযায়ী একটিভ ক্লাস চেক করার ফাংশন
+    console.log(role)
+
+  
     const isActive = (path) => location.pathname === path
         ? "bg-primary/20 text-primary"
         : "text-slate-400 hover:bg-slate-800 hover:text-white";
 
     return (
-        <aside className="hidden lg:flex w-72 bg-slate-900 flex-col p-6 text-white sticky top-0 h-screen">
+        <aside className="hidden lg:flex   bg-slate-900 flex-col p-6 text-white sticky top-0 h-screen">
             
             <Link to={'/'} className="flex items-center gap-3 mb-10 px-2">
                 <div className="bg-primary p-2 rounded-xl">
                     <Utensils className="text-white" size={24} />
                 </div>
                 <span className="text-xl font-black tracking-tighter uppercase">
-                    Meal<span className="text-primary">Mate</span>
+                    Meal<span className="text-primary">MIND</span>
                 </span>
             </Link>
 
@@ -63,6 +66,9 @@ const DashboardNavber = ({  logout }) => {
                         <Link to="/dashboard/manage-recipes" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all ${isActive('/dashboard/manage-recipes')}`}>
                             <PlusCircle size={20} /> Manage Recipes
                         </Link>
+                        <Link to="/dashboard/Create-recipes" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all ${isActive('/dashboard/manage-recipes')}`}>
+                            <PlusCircle size={20} />Create recipes
+                        </Link>
                         <Link to="/dashboard/all-users" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all ${isActive('/dashboard/all-users')}`}>
                             <Users size={20} /> All Users
                         </Link>
@@ -73,6 +79,8 @@ const DashboardNavber = ({  logout }) => {
                 )}
 
                 {/* --- Shared Profile/Settings --- */}
+            </nav>
+
                 <div className="pt-4 border-t border-slate-800">
                     <Link to="/dashboard/profile" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all ${isActive('/dashboard/profile')}`}>
                         <User size={20} /> My Profile
@@ -81,8 +89,6 @@ const DashboardNavber = ({  logout }) => {
                         <Settings size={20} /> Settings
                     </Link>
                 </div>
-            </nav>
-
             {/* Logout Button */}
             <button
                 onClick={logout}

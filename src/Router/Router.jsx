@@ -9,6 +9,9 @@ import MealPlanner from "../Pages/MealPlanner";
 import About from "../Pages/About";
 import Profile from "../Pages/Profile";
 import Dashboard from "../Layout/Dashboard";
+import OverView from "../DashboardPages/OverView";
+import CreateRecipe from "../DashboardPages/CreateRecipe";
+import ManageRecipes from "../DashboardPages/ManageRecipes";
 
 
 export const router = createBrowserRouter([
@@ -44,7 +47,25 @@ export const router = createBrowserRouter([
     },
     {
         path: "dashboard", 
-        element: <Dashboard></Dashboard>
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                index: true,
+                element: <OverView></OverView>
+            },
+            {
+                path: "Create-recipes",
+                element: <CreateRecipe></CreateRecipe>
+            },
+            {
+                path: "manage-recipes",
+                element: <ManageRecipes></ManageRecipes>
+            },
+            {
+                path: "/dashboard/profile",
+                element: <Profile></Profile>
+            },
+        ]
     },
 
 

@@ -16,7 +16,7 @@ const Profile = () => {
                         <div className="relative">
                             {photoURL ? (
                                 <img
-                                    src={photoURL}
+                                    src={user?.photoURL} 
                                     alt={displayName}
                                     className="w-32 h-32 sm:w-40 sm:h-40 rounded-[2.5rem] border-4 border-white object-cover shadow-xl"
                                 />

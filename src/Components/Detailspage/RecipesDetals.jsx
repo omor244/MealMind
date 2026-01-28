@@ -19,7 +19,7 @@ const RecipesDetails = () => {
 
     if (isLoading) return <Loading />;
 
-    const { name, image, category, calories, rating, prepTime, cookTime, difficulty, ingredients, nutrients, instructions } = recipe;
+    const { name, image, category, calories, rating, prepTime, status, cookTime, difficulty, ingredients, nutrients, instructions } = recipe;
 
     return (
         <div className="min-h-screen bg-slate-50 pb-20">
@@ -63,6 +63,11 @@ const RecipesDetails = () => {
                      
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full md:w-auto">
                             <div className="bg-slate-50 p-4 rounded-2xl text-center border border-slate-100">
+                                <Utensils className="mx-auto text-emerald-500 mb-1" size={20} />
+                                <p className="text-[10px] text-slate-400 font-bold uppercase">Status</p>
+                                <p className="font-bold text-slate-800">{status}</p>
+                            </div>
+                            <div className="bg-slate-50 p-4 rounded-2xl text-center border border-slate-100">
                                 <Clock className="mx-auto text-primary mb-1" size={20} />
                                 <p className="text-[10px] text-slate-400 font-bold uppercase">Time</p>
                                 <p className="font-bold text-slate-800">{prepTime}</p>
@@ -72,11 +77,7 @@ const RecipesDetails = () => {
                                 <p className="text-[10px] text-slate-400 font-bold uppercase">Calories</p>
                                 <p className="font-bold text-slate-800">{calories} kcal</p>
                             </div>
-                            <div className="bg-slate-50 p-4 rounded-2xl text-center border border-slate-100 hidden sm:block">
-                                <Utensils className="mx-auto text-emerald-500 mb-1" size={20} />
-                                <p className="text-[10px] text-slate-400 font-bold uppercase">Servings</p>
-                                <p className="font-bold text-slate-800">1 Person</p>
-                            </div>
+                        
                         </div>
                     </div>
 
@@ -88,7 +89,7 @@ const RecipesDetails = () => {
                                 <div key={key} className="relative p-6 rounded-3xl border border-slate-100 bg-white hover:border-primary/30 transition-colors">
                                     <p className="text-slate-400 text-xs font-bold uppercase mb-1">{key}</p>
                                     <p className="text-2xl font-black text-slate-900">{value}</p>
-                                    <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-primary/40"></div>
+                                    
                                 </div>
                             ))}
                         </div>
