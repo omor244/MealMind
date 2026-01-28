@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router";
 import { Clock, Flame, ArrowLeft, Star, Utensils, CheckCircle2 } from "lucide-react";
 import Loading from "../Loading/Loading";
+import ReviewPage from "./ReviewPage";
 
 
 const RecipesDetails = () => {
@@ -137,6 +138,10 @@ const RecipesDetails = () => {
                             <CheckCircle2 size={24} />
                             Add to My Weekly Plan
                         </Link>
+                    </div>
+
+                    * <div className="max-w-6xl mx-auto px-4 mt-10">
+                        <ReviewPage recipeId={id} recipeName={name} />
                     </div>
                 </div>
             </div>

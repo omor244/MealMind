@@ -4,9 +4,11 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import useAuth from "../Hooks/useAuth";
 import { Trash2, Edit, PlusCircle, Tag, Globe, ChevronDown } from "lucide-react";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const CategoryCuisineManager = () => {
     const axiosSecure = useAxiosSecure();
+    const [category, setcategory] = useState("")
     const { user } = useAuth();
 
    
@@ -18,11 +20,16 @@ const CategoryCuisineManager = () => {
         }
     });
 
+
  
-    const handleUpdateCategory = async (id, newValue) => {
+    const handleUpdateCategory = async (id) => {
+         
+        console.log(id,"ads", category)
+       
         try {
-            const res = await axiosSecure.patch(`/recipes/category/${id}`, { category: newValue });
-            if (res.data.modifiedCount > 0) {
+            const res = await axiosSecure.patch(`/category/recipes/${id}`, { category: category });
+            console.log(res.data)
+            if (res.data.modifiedCount) {
                 Swal.fire({
                     title: "Updated!",
                     text: "Category has been changed successfully.",
@@ -43,7 +50,7 @@ const CategoryCuisineManager = () => {
 
     return (
         <div className="p-6 md:p-10">
-            {/* Header with Add Button */}
+      
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
                 <div>
                     <h1 className="text-3xl font-black text-slate-900 tracking-tight">
@@ -56,7 +63,7 @@ const CategoryCuisineManager = () => {
                 </button>
             </div>
 
-            {/* Table Layout */}
+           
             <div className="bg-white rounded-[2.5rem] shadow-xl border border-slate-100 overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="table w-full border-collapse">
@@ -91,7 +98,7 @@ const CategoryCuisineManager = () => {
                                         <div className="relative w-48 group">
                                             <select
                                                 defaultValue={item.category}
-                                                onChange={(e) => handleUpdateCategory(item._id, e.target.value)}
+                                                onChange={(e) => setcategory(e.target.value)}
                                                 className="w-full appearance-none bg-slate-50 border-2 border-transparent focus:border-blue-100 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-tighter text-slate-600 cursor-pointer outline-none"
                                             >
                                                 <option value="Breakfast">Breakfast</option>
@@ -106,7 +113,7 @@ const CategoryCuisineManager = () => {
 
                                     <td className="p-5">
                                         <div className="flex items-center justify-center gap-2">
-                                            <button className="p-2 bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+                                            <button  onClick={() => handleUpdateCategory(item._id)} className="p-2 bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-600 hover:text-white transition-all shadow-sm">
                                                 <Edit size={18} />
                                             </button>
                                          
