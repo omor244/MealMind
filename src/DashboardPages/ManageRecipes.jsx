@@ -20,14 +20,15 @@ const ManageRecipes = () => {
     });
 
    
-    const handleStatusUpdate = async (id, newStatus) => {
+    const handleStatusUpdate = async (id) => {
    
-                    console.log(id, "asdf", status)
-        return
+                   
+     
         try {
-            const res = await axiosSecure.patch(`/recipes/${id}`, { status: newStatus });
-            if (res.data.modifiedCount > 0) {
-                Swal.fire("Updated!", `Recipe is now ${newStatus}`, "success");
+            const res = await axiosSecure.patch(`/recipes/${id}`, { status: status });
+        
+            if (res.data.modifiedCount) {
+                Swal.fire("Updated!", `Recipe is now ${status}`, "success");
                 refetch();
             }
         } catch (error) {
@@ -37,6 +38,9 @@ const ManageRecipes = () => {
 
     
     const handleDelete = (id) => {
+
+        console.log(id)
+     
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -48,7 +52,7 @@ const ManageRecipes = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const res = await axiosSecure.delete(`/recipes/${id}`);
-                if (res.data.deletedCount > 0) {
+                if (res.data.deletedCount) {
                     Swal.fire("Deleted!", "Recipe has been removed.", "success");
                     refetch();
                 }

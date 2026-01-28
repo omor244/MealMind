@@ -12,6 +12,8 @@ import Dashboard from "../Layout/Dashboard";
 import OverView from "../DashboardPages/OverView";
 import CreateRecipe from "../DashboardPages/CreateRecipe";
 import ManageRecipes from "../DashboardPages/ManageRecipes";
+import ManageUser from "../DashboardPages/ManageUser";
+import CategoryCuisineManager from "../DashboardPages/CategoryCuisineManager";
 
 
 export const router = createBrowserRouter([
@@ -60,6 +62,14 @@ export const router = createBrowserRouter([
             {
                 path: "manage-recipes",
                 element: <ManageRecipes></ManageRecipes>
+            },
+            {
+                path: "manage-users",
+                element: <ManageUser></ManageUser>
+            },
+            {
+                path: "CategoryCuisineManager",
+                element: <CategoryCuisineManager></CategoryCuisineManager>
             },
             {
                 path: "/dashboard/profile",

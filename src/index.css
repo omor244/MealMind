@@ -26,3 +26,7 @@
 }
 
 @custom-variant dark (&:where([data-theme=night], [data-theme=night] *));
+
+a.active{
+  @apply bg-primary/20 text-primary
+}

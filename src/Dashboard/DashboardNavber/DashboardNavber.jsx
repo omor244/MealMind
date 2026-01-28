@@ -10,7 +10,7 @@ import {
     TrendingUp,
     Settings
 } from "lucide-react";
-import { Link, useLocation } from "react-router";
+import { NavLink, useLocation } from "react-router";
 import useRole from "../../Hooks/useRole";
 
 const DashboardNavber = ({  logout }) => {
@@ -21,39 +21,37 @@ const DashboardNavber = ({  logout }) => {
     console.log(role)
 
   
-    const isActive = (path) => location.pathname === path
-        ? "bg-primary/20 text-primary"
-        : "text-slate-400 hover:bg-slate-800 hover:text-white";
+    
 
     return (
         <aside className="hidden lg:flex   bg-slate-900 flex-col p-6 text-white sticky top-0 h-screen">
             
-            <Link to={'/'} className="flex items-center gap-3 mb-10 px-2">
+            <NavLink to={'/'} className="flex items-center gap-3 mb-10 px-2">
                 <div className="bg-primary p-2 rounded-xl">
                     <Utensils className="text-white" size={24} />
                 </div>
                 <span className="text-xl font-black tracking-tighter uppercase">
                     Meal<span className="text-primary">MIND</span>
                 </span>
-            </Link>
+            </NavLink>
 
             <nav className="flex-1 space-y-2">
                 <p className="px-4 text-[10px] font-black uppercase text-slate-500 tracking-widest mb-2">Main Menu</p>
 
               
-                <Link to="/dashboard" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all ${isActive('/dashboard')}`}>
+                <NavLink to="/dashboard" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all `}>
                     <LayoutDashboard size={20} /> Dashboard
-                </Link>
+                </NavLink>
 
                
                 {role === "user" && (
                     <>
-                        <Link to="/dashboard/planner" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all ${isActive('/dashboard/planner')}`}>
+                        <NavLink to="/dashboard/planner" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all ${isActive('/dashboard/planner')}`}>
                             <Calendar size={20} /> Weekly Planner
-                        </Link>
-                        <Link to="/dashboard/progress" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all ${isActive('/dashboard/progress')}`}>
+                        </NavLink>
+                        <NavLink to="/dashboard/progress" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all ${isActive('/dashboard/progress')}`}>
                             <TrendingUp size={20} /> Health Progress
-                        </Link>
+                        </NavLink>
                     </>
                 )}
 
@@ -63,18 +61,21 @@ const DashboardNavber = ({  logout }) => {
                         <div className="pt-4">
                             <p className="px-4 text-[10px] font-black uppercase text-slate-500 tracking-widest mb-2">Admin Panel</p>
                         </div>
-                        <Link to="/dashboard/manage-recipes" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all ${isActive('/dashboard/manage-recipes')}`}>
+                        <NavLink to="/dashboard/manage-recipes" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all `}>
                             <PlusCircle size={20} /> Manage Recipes
-                        </Link>
-                        <Link to="/dashboard/Create-recipes" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all ${isActive('/dashboard/manage-recipes')}`}>
+                        </NavLink>
+                        <NavLink to="/dashboard/Create-recipes" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all `}>
                             <PlusCircle size={20} />Create recipes
-                        </Link>
-                        <Link to="/dashboard/all-users" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all ${isActive('/dashboard/all-users')}`}>
+                        </NavLink>
+                        <NavLink to="/dashboard/manage-users" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all `}>
                             <Users size={20} /> All Users
-                        </Link>
-                        <Link to="/dashboard/orders" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all ${isActive('/dashboard/orders')}`}>
+                        </NavLink>
+                        <NavLink to="/dashboard/CategoryCuisineManager" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all `}>
+                            <Users size={20} /> Category Management
+                        </NavLink>
+                        <NavLink to="/dashboard/orders" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all`}>
                             <ClipboardList size={20} /> Subscription/Orders
-                        </Link>
+                        </NavLink>
                     </>
                 )}
 
@@ -82,12 +83,12 @@ const DashboardNavber = ({  logout }) => {
             </nav>
 
                 <div className="pt-4 border-t border-slate-800">
-                    <Link to="/dashboard/profile" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all ${isActive('/dashboard/profile')}`}>
+                    <NavLink to="/dashboard/profile" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all`}>
                         <User size={20} /> My Profile
-                    </Link>
-                    <Link to="/dashboard/settings" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all ${isActive('/dashboard/settings')}`}>
+                    </NavLink>
+                    <NavLink to="/dashboard/settings" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all`}>
                         <Settings size={20} /> Settings
-                    </Link>
+                    </NavLink>
                 </div>
             {/* Logout Button */}
             <button
