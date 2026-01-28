@@ -14,6 +14,7 @@ import CreateRecipe from "../DashboardPages/CreateRecipe";
 import ManageRecipes from "../DashboardPages/ManageRecipes";
 import ManageUser from "../DashboardPages/ManageUser";
 import CategoryCuisineManager from "../DashboardPages/CategoryCuisineManager";
+import ReviewManagement from "../DashboardPages/ReviewManagement";
 
 
 export const router = createBrowserRouter([
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
             {
                 path: "CategoryCuisineManager",
                 element: <CategoryCuisineManager></CategoryCuisineManager>
+            },
+            {
+                path: "reviewManage",
+                element: <ReviewManagement></ReviewManagement>
             },
             {
                 path: "/dashboard/profile",

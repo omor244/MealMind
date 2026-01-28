@@ -73,9 +73,10 @@ const DashboardNavber = ({  logout }) => {
                         <NavLink to="/dashboard/CategoryCuisineManager" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all `}>
                             <Users size={20} /> Category Management
                         </NavLink>
-                        <NavLink to="/dashboard/orders" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all`}>
-                            <ClipboardList size={20} /> Subscription/Orders
+                        <NavLink to="/dashboard/reviewManage" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all `}>
+                            <Users size={20} /> Reviews Management
                         </NavLink>
+                      
                     </>
                 )}
 

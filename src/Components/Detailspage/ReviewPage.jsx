@@ -18,12 +18,14 @@ const ReviewPage = ({ recipeId, recipeName }) => {
 
    
     const { data: reviews = [], refetch } = useQuery({
-        queryKey: ["reviews", recipeId],
+        queryKey: ["reviews"],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/reviews/${recipeId}`);
+            const res = await axiosSecure(`/review/${recipeId}`);
             return res.data;
         }
     });
+
+
 
     const handleReviewSubmit = async (e) => {
         e.preventDefault();
@@ -38,10 +40,13 @@ const ReviewPage = ({ recipeId, recipeName }) => {
             userPhoto: user?.photoURL,
             rating,
             comment,
-            date: new Date()
+            date: new Date().toLocaleDateString()
         };
+    
+       
 
-        const res = await axiosSecure.post('/reviews', reviewData);
+        
+        const res = await axiosSecure.post('/review', reviewData);
         if (res.data.insertedId) {
             Swal.fire({
                 icon: 'success',
