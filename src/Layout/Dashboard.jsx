@@ -10,15 +10,15 @@ const Dashboard = () => {
   
 
     return (
-        <div className="grid grid-cols-12 gap-0 min-h-screen bg-slate-50">
+        <div className="grid grid-cols-16 gap-0 min-h-screen bg-slate-50">
                
-            <div className='col-span-2'>
+            <div className='col-span-3'>
            <DashboardNavber></DashboardNavber>
                 
             </div>
 
            
-            <main className="col-span-10 sm:p-10 overflow-y-auto">
+            <main className="col-span-13 sm:p-10 overflow-y-auto">
              
               <Outlet></Outlet>
             </main>

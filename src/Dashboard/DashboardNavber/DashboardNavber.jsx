@@ -76,6 +76,9 @@ const DashboardNavber = ({  logout }) => {
                         <NavLink to="/dashboard/reviewManage" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all `}>
                             <Users size={20} /> Reviews Management
                         </NavLink>
+                        <NavLink to="/dashboard/FeaturedManagement" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all `}>
+                            <Users size={20} /> Featured Management
+                        </NavLink>
                       
                     </>
                 )}

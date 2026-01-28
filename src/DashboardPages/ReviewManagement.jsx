@@ -15,7 +15,7 @@ const ReviewManagement = () => {
         }
     });
 
-    // রিভিউ ডিলিট করার ফাংশন
+   
     const handleDeleteReview = (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -28,7 +28,7 @@ const ReviewManagement = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const res = await axiosSecure.delete(`/review/${id}`);
+                    const res = await axiosSecure.delete(`/reviews/${id}`);
                     if (res.data.deletedCount > 0) {
                         Swal.fire("Deleted!", "Review has been removed.", "success");
                         refetch();
