@@ -13,7 +13,7 @@ const RecipesDetails = () => {
     const { data: recipe = {}, isLoading } = useQuery({
         queryKey: ["recipes", id],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:3000/recipes/${id}`);
+            const res = await axios.get(`https://meal-mind-server-ashy.vercel.app/recipes/${id}`);
             return res.data;
         }
     });
@@ -48,7 +48,7 @@ const RecipesDetails = () => {
                             <span className="bg-primary/10 text-primary px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest">
                                 {category}
                             </span>
-                            <h1 className="text-4xl md:text-5xl font-black text-slate-900">{name}</h1>
+                            <h1 className="text-3xl md:text-5xl font-black text-slate-900">{name}</h1>
                             <div className="flex items-center gap-4 text-slate-500">
                                 <div className="flex items-center gap-1.5 text-yellow-500">
                                     <Star size={20} fill="currentColor" />

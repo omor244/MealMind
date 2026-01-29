@@ -5,7 +5,7 @@ import useAuth from './useAuth'
 
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseURL: 'https://meal-mind-server-ashy.vercel.app'
    
 })
 

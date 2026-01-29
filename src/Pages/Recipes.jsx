@@ -8,7 +8,7 @@ const Recipes = () => {
     const { data: recipes = [], isLoading } = useQuery({
         queryKey: ["recipes"],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:3000/recipes');
+            const res = await axios.get('https://meal-mind-server-ashy.vercel.app/recipes');
             return res.data;
         }
     });

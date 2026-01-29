@@ -9,7 +9,7 @@ const RecipesModal = ({ modalref, onSelectRecipe, selectedSlot }) => {
     const { data: recipes = [], isLoading, isFetching } = useQuery({
         queryKey: ["recipes", search],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:3000/recipes?search=${search}`);
+            const res = await axios.get(`https://meal-mind-server-ashy.vercel.app/recipes?search=${search}`);
             return res.data;
         },
        

@@ -24,7 +24,7 @@ const FeaturedFoods = () => {
     const { data: foods = [], isLoading } = useQuery({
         queryKey: ["foods"],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:3000/recipes/featured');
+            const res = await axios.get('https://meal-mind-server-ashy.vercel.app/recipes/featured');
             return res.data;
         }
     });
