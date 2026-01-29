@@ -10,9 +10,8 @@ const SocialButton = () => {
     const { signInWithGoogle, loading } = useAuth()
     const navigate = useNavigate();
     const location = useLocation();
-
    
-    const from = location.state?.pathname || "/";
+   
 
     const handleGoogleLogin = async () => {
        
@@ -36,7 +35,7 @@ const SocialButton = () => {
                 });
 
                 
-                navigate(from, { replace: true });
+                navigate(location?.state ? location?.state : '/');
             }
         } catch (error) {
             console.error("Login Error:", error.message);

@@ -25,7 +25,7 @@ const DashboardNavber = () => {
     
 
     return (
-        <aside className="hidden lg:flex   bg-slate-900 flex-col p-6 text-white sticky top-0 h-full">
+        <aside className="hidden lg:flex   bg-slate-900 flex-col p-6 text-white sticky top-0 h-screen">
             
             <NavLink to={'/'} className="flex items-center gap-3 mb-10 px-2">
                 <div className="bg-primary p-2 rounded-xl">
@@ -50,8 +50,8 @@ const DashboardNavber = () => {
                         <NavLink to="/dashboard/planner" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all `}>
                             <Calendar size={20} /> Weekly Planner
                         </NavLink>
-                        <NavLink to="/dashboard/progress" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all `}>
-                            <TrendingUp size={20} /> Health Progress
+                        <NavLink to="/dashboard/my-reviews" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all `}>
+                            <TrendingUp size={20} /> My Reviews
                         </NavLink>
                     </>
                 )}
@@ -91,9 +91,7 @@ const DashboardNavber = () => {
                     <NavLink to="/dashboard/profile" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all`}>
                         <User size={20} /> My Profile
                     </NavLink>
-                    <NavLink to="/dashboard/settings" className={`flex items-center gap-4 w-full p-4 rounded-2xl font-bold transition-all`}>
-                        <Settings size={20} /> Settings
-                    </NavLink>
+                    
                 </div>
             {/* Logout Button */}
             <button

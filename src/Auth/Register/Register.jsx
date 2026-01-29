@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaUser, FaEnvelope, FaLock, FaArrowRight } from "react-icons/fa";
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import useAuth from '../../Hooks/useAuth';
 
@@ -11,7 +11,8 @@ import SocialButton from '../../Hooks/Socialbutton';
 
 const Register = () => {
     const navigate = useNavigate();
-
+    const location = useLocation()
+    console.log(location)
     const { createUser, updateUserProfile } = useAuth()
 
     const handleRegister = async (e) => {
@@ -23,12 +24,13 @@ const Register = () => {
         const password = form.password.value;
 
 
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
         if (!passwordRegex.test(password)) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Password must be at least 6 characters long and include both uppercase and lowercase letters.',
+                timer: 5000,
+                text: 'Must include 1 uppercase, 1 lowercase, 1 special character and be at least 6 characters long.',
             });
             return;
         }
@@ -62,7 +64,7 @@ const Register = () => {
                     text: "Please login to continue.",
                     icon: "success",
                 });
-                navigate('/');
+                navigate( location?.state ? location?.state : '/');
 
             }
         } catch (error) {
@@ -167,7 +169,7 @@ const Register = () => {
                         </div>
 
                         <p className="text-center mt-10 text-slate-500 text-sm font-medium">
-                            Already a member? <Link to="/login" className="text-primary font-bold hover:underline">Login Now</Link>
+                            Already a member? <Link to="/login" state={location?.state} className="text-primary font-bold hover:underline">Login Now</Link>
                         </p>
                     </div>
                 </div>

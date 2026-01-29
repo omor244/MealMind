@@ -16,12 +16,18 @@ import ManageUser from "../DashboardPages/ManageUser";
 import CategoryCuisineManager from "../DashboardPages/CategoryCuisineManager";
 import ReviewManagement from "../DashboardPages/ReviewManagement";
 import FeaturedManagement from "../DashboardPages/FeaturedManagement";
+import MyWeeklyPlan from "../DashboardPages/MyWeeklyPlan";
+import MyreviewPage from "../DashboardPages/MyreviewPage";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
+import ErrorPage from "../Components/Error/ErrorPage";
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 index: true,
@@ -37,7 +43,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: "meal-planner",
-                element: <MealPlanner></MealPlanner>
+                element: <PrivateRoute> 
+                    <MealPlanner></MealPlanner>
+                </PrivateRoute>
             },
             {
                 path: "about",
@@ -51,7 +59,7 @@ export const router = createBrowserRouter([
     },
     {
         path: "dashboard", 
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
                 index: true,
@@ -59,28 +67,46 @@ export const router = createBrowserRouter([
             },
             {
                 path: "Create-recipes",
-                element: <CreateRecipe></CreateRecipe>
+                element: <AdminRoute><CreateRecipe></CreateRecipe></AdminRoute>
             },
             {
                 path: "manage-recipes",
-                element: <ManageRecipes></ManageRecipes>
+                element: <AdminRoute> <ManageRecipes></ManageRecipes></AdminRoute>
             },
             {
                 path: "manage-users",
-                element: <ManageUser></ManageUser>
+                element: <AdminRoute><ManageUser></ManageUser></AdminRoute>
             },
             {
                 path: "CategoryCuisineManager",
-                element: <CategoryCuisineManager></CategoryCuisineManager>
+                element: <AdminRoute><CategoryCuisineManager></CategoryCuisineManager></AdminRoute>
             },
             {
                 path: "FeaturedManagement",
-                element: <FeaturedManagement></FeaturedManagement>
+                element: <AdminRoute><FeaturedManagement></FeaturedManagement></AdminRoute>
             },
             {
                 path: "reviewManage",
-                element: <ReviewManagement></ReviewManagement>
+                element: <AdminRoute><ReviewManagement></ReviewManagement></AdminRoute>
             },
+            {
+                path: "my-reviews",
+                element: <MyreviewPage></MyreviewPage>
+            },
+            
+            
+            // user start
+            {
+                path: "planner",
+                element: <MyWeeklyPlan></MyWeeklyPlan>
+            },
+
+
+            // user end
+
+            
+
+
             {
                 path: "/dashboard/profile",
                 element: <Profile></Profile>

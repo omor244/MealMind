@@ -10,6 +10,7 @@ const mealTypes = ['Breakfast', 'Lunch', 'Dinner'];
 const MealPlanner = () => {
     
     const [planner, setPlanner] = useState({});
+   
     const {user} = useAuth()
    const axiosSecure = useAxiosSecure()
   
@@ -24,9 +25,9 @@ const MealPlanner = () => {
         modalref.current.showModal();
     };
 
-  
+
     const onSelectRecipe = async(recipe) => {
-        console.log(recipe)
+    
         const { day, mealType } = selectedSlot;
  
         console.log(day, "asdf", mealType)
@@ -56,15 +57,17 @@ const MealPlanner = () => {
             addedAt: new Date().toLocaleDateString()
         };
  
-        console.log(weeklydata)
+     
         
    
         const res = await axiosSecure.post("/weeklyPlan", weeklydata)
-           console.log("from data",res.data)
+       
         if (res.data.insertedId) {
+            
             Swal.fire("success","Successfully added in your weekly planner","success")
             modalref.current.close();
         }
+      
         
         
       

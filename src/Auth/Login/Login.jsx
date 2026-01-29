@@ -1,14 +1,16 @@
 
 import { FaEnvelope, FaLock, FaArrowRight } from "react-icons/fa";
-import { Link,  useNavigate } from 'react-router'; 
+import { Link,  useLocation,  useNavigate } from 'react-router'; 
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import useAuth from "../../Hooks/useAuth";
 import SocialButton from "../../Hooks/Socialbutton";
-// import Socialbutton from '../Socialbutton/Socialbutton';
+
 
 const Login = () => {
     const navigate = useNavigate();
+    const location = useLocation()
+     console.log(location)
     const { signIn } = useAuth()
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -32,7 +34,7 @@ const Login = () => {
                     showConfirmButton: false
                 });
 
-                navigate('/');
+                navigate( location?.state ? location?.state : '/');
             } else {
                 Swal.fire("Error", "Invalid Email or Password!", "error");
             }
@@ -48,7 +50,7 @@ const Login = () => {
 
              
                 <div className="md:w-1/2 bg-slate-900 relative p-8 md:p-12 flex flex-col justify-between text-white overflow-hidden">
-                    {/* Background Patterns */}
+               
                     <div className="absolute top-[-10%] left-[-10%] w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
                     <div className="absolute bottom-[-10%] right-[-10%] w-64 h-64 bg-orange-500/10 rounded-full blur-3xl"></div>
 
@@ -128,7 +130,7 @@ const Login = () => {
                         </div>
 
                         <p className="text-center mt-10 text-slate-500 text-sm font-medium">
-                            Don't have an account? <Link to="/register" className="text-primary font-bold hover:underline">Create Account</Link>
+                            Don't have an account? <Link to="/register" state={location?.state} className="text-primary font-bold hover:underline">Create Account</Link>
                         </p>
                     </div>
                 </div>

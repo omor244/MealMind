@@ -5,6 +5,8 @@ import useAuth from '../../Hooks/useAuth';
 
 const Navbar = () => {
     const { user, logOut, loading } = useAuth()
+
+    console.log(user?.photURL)
     
     const navLinks = (
         <>
@@ -83,7 +85,7 @@ const Navbar = () => {
                             <div className="dropdown dropdown-end">
                                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar border-2 border-primary">
                                     <div className="w-10 rounded-full">
-                                        <img src={user?.photURL} alt="profile" />
+                                        <img src={user?.photoURL} alt="profile" />
                                     </div>
                                 </label>
                                 <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
@@ -94,10 +96,8 @@ const Navbar = () => {
                             </div>
                         </>
                             : <>
-                                <Link to="/login" className="btn btn-ghost text-slate-600 hidden sm:flex">Login</Link>
-                                <Link to="/register" className="btn btn-primary text-white rounded-xl px-6 shadow-lg shadow-primary/20">
-                                    Get Started
-                                </Link>
+                                <Link to="/login" className="btn btn-primary px-12 text-white hidden sm:flex">Login</Link>
+                               
                             </>} 
                     </>
          }       
