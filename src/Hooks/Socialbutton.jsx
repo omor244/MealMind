@@ -24,7 +24,7 @@ const SocialButton = () => {
             
             
             const res = await saveorupdateuser({ name: user.displayName, email: user.email, image: user.photoURL })
-            console.log(res)
+           
             if (result.user) {
                 Swal.fire({
                     icon: 'success',

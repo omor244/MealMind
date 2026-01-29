@@ -12,7 +12,7 @@ import SocialButton from '../../Hooks/Socialbutton';
 const Register = () => {
     const navigate = useNavigate();
     const location = useLocation()
-    console.log(location)
+   
     const { createUser, updateUserProfile } = useAuth()
 
     const handleRegister = async (e) => {

@@ -10,7 +10,7 @@ import SocialButton from "../../Hooks/Socialbutton";
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation()
-     console.log(location)
+   
     const { signIn } = useAuth()
     const handleLogin = async (e) => {
         e.preventDefault();

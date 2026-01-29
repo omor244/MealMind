@@ -5,11 +5,10 @@ import FeaturedFoods from '../Components/Homepage/FeaturedFoods';
 import HowItWorks from '../Components/Homepage/HowItWorks';
 import JoinCommunity from '../Components/Homepage/JoinCommunity';
 import AppPromo from '../Components/Homepage/AppPromo';
-import useAuth from '../Hooks/useAuth';
+
 
 const Home = () => {
-    const { user } = useAuth()
-    console.log(user)
+   
     return (
         <div>
             <HeroSection></HeroSection>
